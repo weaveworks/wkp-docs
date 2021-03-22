@@ -1,3 +1,6 @@
+
+const versions = require('./versions.json');
+
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'My Site',
@@ -24,8 +27,14 @@ module.exports = {
           position: 'left',
         },
         {to: 'blog', label: 'Blog', position: 'left'},
+         // right
+         {
+          type: 'docsVersionDropdown',
+          position: 'right',
+          dropdownActiveClassDisabled: true,
+        },
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/fweaveworks/wkp-docs',
           label: 'GitHub',
           position: 'right',
         },
@@ -86,6 +95,12 @@ module.exports = {
           // Please change this to your repo.
           editUrl:
             'https://github.com/facebook/docusaurus/edit/master/website/',
+          lastVersion: versions[0],
+          versions: {
+            current: {
+              label: 'master',
+            },
+          }
         },
         blog: {
           showReadingTime: true,
@@ -98,5 +113,5 @@ module.exports = {
         },
       },
     ],
-  ],
+  ]
 };
