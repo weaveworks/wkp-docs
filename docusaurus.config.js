@@ -4,7 +4,7 @@ const versions = require('./versions.json');
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'WKP Technical Documentation',
-  tagline: 'The tagline of my site',
+  // tagline: 'The tagline of my site',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -34,7 +34,7 @@ module.exports = {
           position: 'left',
         },
         {
-          href: 'https://github.com/weaveworks/wkp-docs',
+          href: 'https://github.com/weaveworks/wkp-docs/tree/main',
           label: 'GitHub',
           position: 'right',
         },
@@ -75,12 +75,12 @@ module.exports = {
            
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/weaveworks/wkp-docs/tree/main',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} WKP Docs.`,
     },
   },
   presets: [
@@ -91,11 +91,11 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
-            'https://github.com/facebook/docusaurus/edit/master/website/',
+            'https://github.com/weaveworks/wkp-docs/tree/main',
           lastVersion: versions[0],
           versions: {
             current: {
-              label: 'master',
+              label: 'main',
             },
           }
         },
