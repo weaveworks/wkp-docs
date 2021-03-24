@@ -10,11 +10,15 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  --ifm-hero-background-color: #556991;
 }
+
+
 
 @media screen and (max-width: 966px) {
   .heroBanner {
     padding: 2rem;
+   
   }
 }
 

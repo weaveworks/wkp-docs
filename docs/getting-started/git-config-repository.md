@@ -1,5 +1,5 @@
 ---
-title: "Git config repository"
+title: "Managing the Git Configuration Repository"
 ---
 
 The _Git Config Repository_ is where the cluster configuration is stored. It contains the cluster definition and your application manifests.

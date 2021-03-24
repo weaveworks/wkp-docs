@@ -1,8 +1,9 @@
 ---
-title: "Introduction"
+title: "Introduction to wk"
+slug: /
 ---
 
-The Weave Kubernetes Platform (WKP) tool `wk` creates production ready clusters with ease.
+The Weave Kubernetes Platform (WKP) cli `wk` creates production ready clusters with ease.
 WKP facilitates GitOps: all configuration is in files which can be kept under version control.
 
 Depending on your requirements and how much infrastructure you already have in place you can choose a WKP `track`:

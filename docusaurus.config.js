@@ -3,38 +3,38 @@ const versions = require('./versions.json');
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'My Site',
+  title: 'WKP Technical Documentation',
   tagline: 'The tagline of my site',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  favicon: 'img/favicon_150px.png',
+  organizationName: 'Weaveworks', // Usually your GitHub org/user name.
+  projectName: 'wkp-docs', // Usually your repo name.
   themeConfig: {
     navbar: {
-      title: 'My Site',
+      title: 'WKP Docs',
       logo: {
         alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        src: 'img/weave-logo.png',
       },
       items: [
         {
           to: 'docs/',
           activeBasePath: 'docs',
-          label: 'Docs',
+          label: 'Getting Started',
+            src: 'img/logo.svg',
           position: 'left',
         },
-        {to: 'blog', label: 'Blog', position: 'left'},
-         // right
-         {
-          type: 'docsVersionDropdown',
-          position: 'right',
-          dropdownActiveClassDisabled: true,
+        {
+          to: 'docs/deploying-wkp/hosts',
+          activeBasePath:'docs' ,
+          label: 'Install',
+          position: 'left',
         },
         {
-          href: 'https://github.com/fweaveworks/wkp-docs',
+          href: 'https://github.com/weaveworks/wkp-docs',
           label: 'GitHub',
           position: 'right',
         },
@@ -72,10 +72,7 @@ module.exports = {
         {
           title: 'More',
           items: [
-            {
-              label: 'Blog',
-              to: 'blog',
-            },
+           
             {
               label: 'GitHub',
               href: 'https://github.com/facebook/docusaurus',

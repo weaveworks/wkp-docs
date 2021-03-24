@@ -1,5 +1,5 @@
 ---
-title: "Entitlements"
+title: "Configuring Entitlements"
 ---
 
 Entitlements files are necessary to run `wk`. They contain the limits

@@ -1,5 +1,5 @@
 ---
-title: "Known Issues"
+title: "Known Issues and Work Arounds"
 ---
 
 - Cluster creation with Kubernetes 1.16.1 fails. **Avoid creating clusters on 1.16.1 and use a later version instead.**
