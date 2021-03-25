@@ -7,7 +7,7 @@
 <link rel="alternate" type="application/rss+xml" href="/wkp-docs/blog/rss.xml" title="WKP Technical Documentation Blog RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/wkp-docs/blog/atom.xml" title="WKP Technical Documentation Blog Atom Feed"><title data-react-helmet="true">Patching Node OS packages | WKP Technical Documentation</title><meta data-react-helmet="true" property="og:url" content="https://weaveworks.github.io/wkp-docs//wkp-docs/docs/tasks/patching-node-os-packages"><meta data-react-helmet="true" name="docusaurus_locale" content="en"><meta data-react-helmet="true" name="docusaurus_version" content="2.4.2"><meta data-react-helmet="true" name="docusaurus_tag" content="docs-default-2.4.2"><meta data-react-helmet="true" property="og:title" content="Patching Node OS packages | WKP Technical Documentation"><meta data-react-helmet="true" name="description" content="OS Patching"><meta data-react-helmet="true" property="og:description" content="OS Patching"><link data-react-helmet="true" rel="shortcut icon" href="/wkp-docs/img/favicon_150px.png"><link data-react-helmet="true" rel="canonical" href="https://weaveworks.github.io/wkp-docs//wkp-docs/docs/tasks/patching-node-os-packages"><link data-react-helmet="true" rel="alternate" href="https://weaveworks.github.io/wkp-docs//wkp-docs/docs/tasks/patching-node-os-packages" hreflang="en"><link data-react-helmet="true" rel="alternate" href="https://weaveworks.github.io/wkp-docs//wkp-docs/docs/tasks/patching-node-os-packages" hreflang="x-default"><link rel="stylesheet" href="/wkp-docs/assets/css/styles.7e876baf.css">
 <link rel="preload" href="/wkp-docs/assets/js/styles.abc77443.js" as="script">
-<link rel="preload" href="/wkp-docs/assets/js/runtime~main.0fddeaaa.js" as="script">
+<link rel="preload" href="/wkp-docs/assets/js/runtime~main.3dd6b9f4.js" as="script">
 <link rel="preload" href="/wkp-docs/assets/js/main.1a439f54.js" as="script">
 <link rel="preload" href="/wkp-docs/assets/js/1.7b0384ce.js" as="script">
 <link rel="preload" href="/wkp-docs/assets/js/2.e71b656c.js" as="script">
@@ -15,7 +15,7 @@
 <link rel="preload" href="/wkp-docs/assets/js/100.a80eb3bc.js" as="script">
 <link rel="preload" href="/wkp-docs/assets/js/cb9bbae0.fb29f0dd.js" as="script">
 <link rel="preload" href="/wkp-docs/assets/js/17896441.bd7294b6.js" as="script">
-<link rel="preload" href="/wkp-docs/assets/js/65df319e.78c061d7.js" as="script">
+<link rel="preload" href="/wkp-docs/assets/js/65df319e.1187cb8b.js" as="script">
 </head>
 <body>
 <script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){var t=null;try{t=localStorage.getItem("theme")}catch(t){}return t}();t(null!==e?e:"light")}()</script><div id="__docusaurus">
@@ -24,7 +24,7 @@ Whether you are provisioning the base OS with cloud-init, kickstart, a shell scr
 baking OS images, or using a configuration-management system like Ansible/Chef/Puppet/Salt,
 there are some things you will want to consider when patching OS packages in your WKP
 cluster.</p><p>Kubernetes related dependencies such as Docker, Containerd, and the Kubelet are
-declaratively managed by the WKS-Controller via the <code>Cluster</code> [<code>ExistingInfraCluster</code>]({{&lt; ref &quot;/reference/cluster&quot; &gt;}}).
+declaratively managed by the WKS-Controller via the <code>Cluster</code> <a href="/wkp-docs/docs/reference/cluster"><code>ExistingInfraCluster</code></a>.
 These packages are normally updated with a cluster upgrade.
 If you find you&#x27;d like to patch WKP managed packages out-of-band for a <strong>bug-fix</strong> or <strong>CVE</strong>,
 <em>please contact WKP Support</em> to avoid service disruption.</p><p>Packages such as the OS kernel and SSHD (which is a pre-requisite for the SSH Cluster API Provider)
@@ -53,7 +53,7 @@ You then migrate workloads to them by draining old Nodes.
 Once the workloads are migrated, you can remove the old Nodes, and repeat the process in phases.</p><p>Having more free or elastic capacity to provision new machines will make rollout of new
 Nodes quicker and easier.
 If you are able to double the cluster capacity temporarily, you can complete this rollout
-in 1 phase.</p><h2><a aria-hidden="true" tabindex="-1" class="anchor enhancedAnchor_2LWZ" id="addremovedrain-nodes"></a>Add/Remove/Drain nodes<a class="hash-link" href="#addremovedrain-nodes" title="Direct link to heading">#</a></h2><p>You can <strong>add</strong> or <strong>remove</strong> cluster Nodes by committing to the [Machines manifest]({{&lt; ref &quot;/reference/machines&quot; &gt;}}).<br>
+in 1 phase.</p><h2><a aria-hidden="true" tabindex="-1" class="anchor enhancedAnchor_2LWZ" id="addremovedrain-nodes"></a>Add/Remove/Drain nodes<a class="hash-link" href="#addremovedrain-nodes" title="Direct link to heading">#</a></h2><p>You can <strong>add</strong> or <strong>remove</strong> cluster Nodes by committing to the <a href="/wkp-docs/docs/reference/machines">Machines manifest</a>.<br>
 Nodes can be <strong>tainted</strong> by committing to that same Machines manifest.
 <strong>taints</strong> can be used to repel new workloads from the Node.</p><p>Take care to not unintentionally taint, add or remove Nodes in the same commit.
 New Nodes will need time to provision and become <code>Ready</code>. They may not provision
@@ -63,7 +63,7 @@ This acts similarly to taints, but Pods cannot ignore it.
 See the <a href="https://kubernetes.io/docs/tasks/administer-cluster/safely-drain-node/" target="_blank" rel="noopener noreferrer">Kubernetes docs</a>
 for notes on Pod Eviction behavior and <code>PodDisruptionBudgets</code>.</p></div></article><div class="margin-vert--xl"><div class="row"><div class="col"><a href="https://github.com/weaveworks/wkp-docs/tree/main/versioned_docs/version-2.4.2/tasks/patching-node-os-packages.md" target="_blank" rel="noreferrer noopener"><svg fill="currentColor" height="1.2em" width="1.2em" preserveAspectRatio="xMidYMid meet" role="img" viewBox="0 0 40 40" class="iconEdit_2_ui" aria-label="Edit page"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div></div></div><div class="margin-vert--lg"><nav class="pagination-nav" aria-label="Docs pages navigation"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/wkp-docs/docs/tasks/multiple-cluster-admins"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">« Specifying Multiple Admins</div></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/wkp-docs/docs/tasks/profiling-kubectl"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Profiling kubectl »</div></a></div></nav></div></div></div><div class="col col--3"><div class="tableOfContents_35-E thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#os-patching" class="table-of-contents__link">OS Patching</a></li><li><a href="#clusternode-lifecycle" class="table-of-contents__link">Cluster/Node lifecycle</a><ul><li><a href="#patching-in-place" class="table-of-contents__link">Patching in-place</a></li><li><a href="#replacecycle-nodes" class="table-of-contents__link">Replace/Cycle nodes</a></li></ul></li><li><a href="#addremovedrain-nodes" class="table-of-contents__link">Add/Remove/Drain nodes</a></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container"><div class="row footer__links"><div class="col footer__col"><h4 class="footer__title">Support</h4><ul class="footer__items"><li class="footer__item"><a href="mailto:support@weave.works" target="_blank" rel="noopener noreferrer" class="footer__link-item">Contact Us</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2021 Weaveworks</div></div></div></footer></div>
 <script src="/wkp-docs/assets/js/styles.abc77443.js"></script>
-<script src="/wkp-docs/assets/js/runtime~main.0fddeaaa.js"></script>
+<script src="/wkp-docs/assets/js/runtime~main.3dd6b9f4.js"></script>
 <script src="/wkp-docs/assets/js/main.1a439f54.js"></script>
 <script src="/wkp-docs/assets/js/1.7b0384ce.js"></script>
 <script src="/wkp-docs/assets/js/2.e71b656c.js"></script>
@@ -71,6 +71,6 @@ for notes on Pod Eviction behavior and <code>PodDisruptionBudgets</code>.</p></d
 <script src="/wkp-docs/assets/js/100.a80eb3bc.js"></script>
 <script src="/wkp-docs/assets/js/cb9bbae0.fb29f0dd.js"></script>
 <script src="/wkp-docs/assets/js/17896441.bd7294b6.js"></script>
-<script src="/wkp-docs/assets/js/65df319e.78c061d7.js"></script>
+<script src="/wkp-docs/assets/js/65df319e.1187cb8b.js"></script>
 </body>
 </html>
