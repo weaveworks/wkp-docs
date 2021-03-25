@@ -5,9 +5,9 @@ const versions = require('./versions.json');
 module.exports = {
   title: 'WKP Technical Documentation',
   // tagline: 'The tagline of my site',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
-  onBrokenLinks: 'throw',
+  url: 'https://weaveworks.github.io/wkp-docs/',
+  baseUrl: '/wkp-docs/',
+  onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon_150px.png',
   organizationName: 'Weaveworks', // Usually your GitHub org/user name.
@@ -16,7 +16,7 @@ module.exports = {
     navbar: {
       title: 'WKP Docs',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'WKP docs',
         src: 'img/weave-logo.png',
       },
       items: [
@@ -24,7 +24,6 @@ module.exports = {
           to: 'docs/',
           activeBasePath: 'docs',
           label: 'Getting Started',
-            src: 'img/logo.svg',
           position: 'left',
         },
         {
@@ -34,55 +33,42 @@ module.exports = {
           position: 'left',
         },
         {
+          to: 'docs/tasks/using-the-eks-d-distribution',
+          activeBasePath:'docs' ,
+          label: 'Tasks',
+          position: 'left',
+        },
+        {
+          to: 'docs/cluster-operations/user-workloads',
+          activeBasePath:'docs' ,
+          label: 'Cluster Operations',
+          position: 'left',
+        },
+        
+        {
           href: 'https://github.com/weaveworks/wkp-docs/tree/main',
           label: 'GitHub',
           position: 'right',
         },
       ],
     },
-    footer: {
+   footer: {
       style: 'dark',
       links: [
+        
         {
-          title: 'Docs',
+          title: 'Support',
           items: [
             {
-              label: 'Getting Started',
-              to: 'docs/',
+              label: 'Contact Us',
+              href: 'mailto:support@weave.works',
             },
           ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-           
-            {
-              label: 'GitHub',
-              href: 'https://github.com/weaveworks/wkp-docs/tree/main',
-            },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} WKP Docs.`,
-    },
-  },
+         },
+      ], 
+      copyright: `Copyright © ${new Date().getFullYear()} Weaveworks`,
+    }, 
+  }, 
   presets: [
     [
       '@docusaurus/preset-classic',
