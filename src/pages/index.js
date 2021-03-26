@@ -9,31 +9,28 @@ import styles from './styles.module.css';
 const features = [
   {
     title: 'Release Notes',
-    imageUrl: 'img/undraw_docusaurus_mountain.svg',
+   // imageUrl: 'img/undraw_docusaurus_mountain.svg',
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
-      </>
-    ),
-  },
-  {
-    title: 'Download WKP',
-    imageUrl: 'img/undraw_docusaurus_tree.svg',
-    description: (
-      <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Find out what's new in <a href ="https://github.com/weaveworks/wks/releases">this release.</a> 
       </>
     ),
   },
   {
     title: 'Troubleshooting',
-    imageUrl: 'img/undraw_docusaurus_react.svg',
+   // imageUrl: 'img/undraw_docusaurus_tree.svg',
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Troubleshoot kubelet, wks-controller and <a href="wkp-docs/docs/troubleshooting/help"> other issues </a>.  
+      </>
+    ),
+  },
+  {
+    title: 'WKP downloads',
+    // imageUrl: 'img/undraw_docusaurus_react.svg',
+    description: (
+      <>
+        Download a version of WKP.
       </>
     ),
   },
@@ -65,7 +62,10 @@ export default function Home() {
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
           <p className="hero__subtitle">{siteConfig.tagline}</p>
-          <p>What is WKP? </p>
+          <p> Reduce the complexity of operating Kubernetes with GitOps and enable your team to deliver fast and secure cloud native applications.
+Automate platform configuration for common use cases such as monitoring and machine learning. 
+Rollout reproducible cluster stacks to different environments from development to staging to production and simplify operations. 
+Reduce day 2 operation problems with WKP’s sophisticated cluster life-cycle management of maintenance, upgrades and patches to scale cluster fleet management across multiple clouds, on-premise and at the edge.</p>
           <div className={styles.buttons}>
             <Link
               className={clsx(
