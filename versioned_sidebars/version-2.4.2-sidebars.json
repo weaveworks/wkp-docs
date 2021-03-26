@@ -58,25 +58,7 @@
         }
       ]
     },
-    {
-      "collapsed": true,
-      "type": "category",
-      "label": "Multi-cluster Control Plane",
-      "items": [
-        {
-          "type": "doc",
-          "id": "version-2.4.2/mccp/intro"
-        },
-        {
-          "type": "doc",
-          "id": "version-2.4.2/mccp/database-configuration"
-        },
-        {
-          "type": "doc",
-          "id": "version-2.4.2/mccp/usage-guide"
-        }
-      ]
-    },
+    
     {
       "collapsed": true,
       "type": "category",
@@ -155,10 +137,7 @@
       "type": "category",
       "label": "Tasks",
       "items": [
-        {
-          "type": "doc",
-          "id": "version-2.4.2/tasks/control-plane-load-balancers"
-        },
+        
         {
           "type": "doc",
           "id": "version-2.4.2/tasks/using-the-eks-d-distribution"
