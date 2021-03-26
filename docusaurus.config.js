@@ -44,6 +44,14 @@ module.exports = {
           label: 'Cluster Operations',
           position: 'left',
         },
+
+        // {to: 'blog', label: 'Blog', position: 'left'},
+        // right
+        {
+         type: 'docsVersionDropdown',
+         position: 'right',
+         dropdownActiveClassDisabled: true,
+       },
         
         {
           href: 'https://github.com/weaveworks/wkp-docs/tree/main',
