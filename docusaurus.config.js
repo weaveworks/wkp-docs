@@ -6,7 +6,7 @@ module.exports = {
   title: 'WKP Technical Documentation',
   // tagline: 'The tagline of my site',
   url: 'https://weaveworks.github.io/wkp-docs/',
-  baseUrl: '/wkp-docs/',
+  baseUrl: '',
   onBrokenLinks: 'ignore',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon_150px.png',
