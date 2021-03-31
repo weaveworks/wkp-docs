@@ -25,3 +25,7 @@
   padding: 0 var(--ifm-pre-padding);
 }
 
+.hero--primary {
+text-align: left !important;
+
+}

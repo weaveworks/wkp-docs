@@ -21,7 +21,7 @@ const features = [
    // imageUrl: 'img/undraw_docusaurus_tree.svg',
     description: (
       <>
-        Troubleshoot kubelet, wks-controller and other issues.  
+       <a href="https://docs.weave.works/docs/troubleshooting/help"> Troubleshoot </a> kubelet, wks-controller and other issues.  
       </>
     ),
   },
