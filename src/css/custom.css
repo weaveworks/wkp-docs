@@ -25,6 +25,12 @@
   padding: 0 var(--ifm-pre-padding);
 }
 
+.button.button--secondary.button--outline:not(.button--active):not(:hover) {
+
+  color: var(--ifm-font-color);
+  
+}
+
 .hero--primary {
 text-align: left !important;
 
