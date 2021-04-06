@@ -8,8 +8,8 @@ weight = 3
 Before exposing the WKP UI publicly, you need to setup a way to authenticate your users as well as provision SSL certificates for the HTTPS endpoints. You also need an ingress controller that can handle ingress requests deployed either as a `LoadBalancer` or `NodePort` service.
 
 Here is an overview of the steps necessary to expose and secure your cluster
-- Install an [ingress controller]({{< ref "#ingress-controller" >}} "Ingress Controller") to expose internal services outside the cluster
-- Add [TLS/HTTPS]({{< ref "#ssl-certificates" >}}) to access this securely 
+- Install an [ingress-controller]({{< ref "#ingress-controller" >}} "Ingress Controller") to expose internal services outside the cluster
+- Add [TLS/HTTPS]({{< ref "#ssl-certificates" >}}) to access this securely
 - Deploy and configure oauth2-proxy to [allow]({{< ref "#authentication" >}}) only members of your organization to access the UI
 - [Expose]({{< ref "#expose" >}}) the internal WKP UI service publicly through an ingress and keep it secure by redirecting any unauthenticated users to GitHub or GitLab through the use of NGINX annotations
 
@@ -79,7 +79,7 @@ spec:
     installCRDs: true
 ```
 
-At this point, you should have cert-manager running in the `cert-manager` namespace. To continue, you need to create `Issuer` or `ClusterIssuer` resources. These represent certificate authorities that can generate signed certificates. An `Issuer` is a namespaced resource, used to issue certificates in its current namespace. A `ClusterIssuer` is not namespaced and can be used to issue certificates across all namespaces. 
+At this point, you should have cert-manager running in the `cert-manager` namespace. To continue, you need to create `Issuer` or `ClusterIssuer` resources. These represent certificate authorities that can generate signed certificates. An `Issuer` is a namespaced resource, used to issue certificates in its current namespace. A `ClusterIssuer` is not namespaced and can be used to issue certificates across all namespaces.
 
 For example, the following manifest creates a cluster-wide issuer that uses Let's Encrypt to issue certificates and is configured to use an [HTTP01](https://cert-manager.io/docs/configuration/acme/http01/) challenge. The ingress class is used to indicate which ingress controller will be used to expose a well known endpoint for the purpose of solving the validation challenge.  
 
@@ -165,10 +165,10 @@ To set up authentication, you need to install [oauth2-proxy](https://oauth2-prox
 #### GitHub
 
 1. Before setting up GitHub authentication you need to create an OAuth application. Oauth2-proxy will be configured to use this application to authenticate users against a GitHub team. To create a new OAuth application, navigate to your [settings](https://github.com/settings/developers) page in your GitHub profile, click the button `New OAuth App` and fill in the form presented.
-    - Application name: the name of the application will be presented to users when they are being asked to authenticate. 
-    - Homepage URL: the homepage url will typically be the URL of your WKP UI i.e. `https://example.com`. 
+    - Application name: the name of the application will be presented to users when they are being asked to authenticate.
+    - Homepage URL: the homepage url will typically be the URL of your WKP UI i.e. `https://example.com`.
     - Authorization callback URL: the authorization callback URL will be the URL where users are sent after they authorize with GitHub. When using oauth2-proxy this is typically a path of the main application URL that oauth2-proxy will serve i.e. `https://example.com/oauth2/callback`. If you use a `NodePort` service for your ingress controller (as mentioned above), you need to add the corresponding HTTPS port that the controller listens to, to both of these links.
-2. Upon creating an OAuth application, you will be presented with a `Client ID`. Click on the `Generate new client secret` button to also generate a client secret for this application. Take note of these two values as you will be adding them to your cluster later as a Kubernetes secret. 
+2. Upon creating an OAuth application, you will be presented with a `Client ID`. Click on the `Generate new client secret` button to also generate a client secret for this application. Take note of these two values as you will be adding them to your cluster later as a Kubernetes secret.
 
 #### GitLab
 
@@ -278,7 +278,7 @@ metadata:
   namespace: oauth2-proxy
   annotations:
     kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-prod 
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   rules:
   - host: <hostname-to-use> # e.g. example.com

@@ -137,4 +137,4 @@ Once the agent has been removed its status will change from "Connected" to _Last
 
 To re-connect the cluster again follow the _Connect a cluster_ instructions above.
 
-![Disconnect cluster](/mccp/img/disconnect-cluster.png)
+![Disconnect cluster](./img/disconnect-cluster.png)
