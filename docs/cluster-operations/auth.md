@@ -8,7 +8,7 @@ weight = 3
 Before exposing the WKP UI publicly, you need to setup a way to authenticate your users as well as provision SSL certificates for the HTTPS endpoints. You also need an ingress controller that can handle ingress requests deployed either as a `LoadBalancer` or `NodePort` service.
 
 Here is an overview of the steps necessary to expose and secure your cluster
-- Install an [ingress-controller]({{< ref "#ingress-controller" >}} "Ingress Controller") to expose internal services outside the cluster
+- Install an [ingress controller]("#ingress-controller") to expose internal services outside the cluster
 - Add [TLS/HTTPS]({{< ref "#ssl-certificates" >}}) to access this securely
 - Deploy and configure oauth2-proxy to [allow]({{< ref "#authentication" >}}) only members of your organization to access the UI
 - [Expose]({{< ref "#expose" >}}) the internal WKP UI service publicly through an ingress and keep it secure by redirecting any unauthenticated users to GitHub or GitLab through the use of NGINX annotations
