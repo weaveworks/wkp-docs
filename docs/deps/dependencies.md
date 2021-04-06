@@ -1,6 +1,7 @@
----
-title: "Third-party Dependencies"
----
++++
+title = "Third-party Dependencies"
+weight = 500
++++
 ## Third-party Dependencies 
 # Go modules
 | Module | Version | License |
@@ -17,7 +18,7 @@ title: "Third-party Dependencies"
 | cloud.google.com/go/storage | v1.6.0 | Apache License 2.0 |
 | dmitri.shuralyov.com/gpu/mtl | v0.0.0-20190408044501-666a987793e9 | BSD-3-Clause |
 | github.com/360EntSecGroup-Skylar/excelize | v1.4.1 | BSD 3-Clause \New\ or \Revised\ License |
-| github.com/Azure/azure-sdk-for-go | v43.0.0+incompatible | Apache License 2.0 |
+| github.com/Azure/azure-sdk-for-go | v43.0.0+incompatible | MIT License |
 | github.com/Azure/go-ansiterm | v0.0.0-20170929234023-d6e3b3328b78 | MIT License |
 | github.com/Azure/go-autorest | v14.2.0+incompatible | Apache License 2.0 |
 | github.com/Azure/go-autorest/autorest | v0.11.1 | Apache License 2.0 |
@@ -58,7 +59,7 @@ title: "Third-party Dependencies"
 | github.com/alcortesm/tgz | v0.0.0-20161220082320-9c5fe88206d7 | MIT License |
 | github.com/alecthomas/template | v0.0.0-20190718012654-fb15b899a751 | BSD 3-Clause \New\ or \Revised\ License |
 | github.com/alecthomas/units | v0.0.0-20190717042225-c3de453c63f4 | MIT License |
-| github.com/alessio/shellescape | v0.0.0-20190409004728-b115ca0f9053 | MIT License |
+| github.com/alessio/shellescape | v1.2.2 | MIT License |
 | github.com/alioygur/gores | v1.2.1 | Apache License 2.0 |
 | github.com/andreyvit/diff | v0.0.0-20170406064948-c7f18ee00883 | MIT License |
 | github.com/andybalholm/cascadia | v1.0.0 | BSD 2-Clause \Simplified\ License |
@@ -175,6 +176,7 @@ title: "Third-party Dependencies"
 | github.com/envoyproxy/protoc-gen-validate | v0.1.0 | Apache License 2.0 |
 | github.com/euank/go-kmsg-parser | v2.0.0+incompatible | Apache License 2.0 |
 | github.com/evanphx/json-patch | v4.9.0+incompatible | BSD 3-Clause \New\ or \Revised\ License |
+| github.com/evanphx/json-patch/v5 | v5.1.0 | BSD 3-Clause \New\ or \Revised\ License |
 | github.com/exponent-io/jsonpath | v0.0.0-20151013193312-d6023ce2651d | MIT License |
 | github.com/fatih/camelcase | v1.0.0 | MIT License |
 | github.com/fatih/color | v1.7.0 | MIT License |
@@ -538,7 +540,7 @@ title: "Third-party Dependencies"
 | github.com/pelletier/go-buffruneio | v0.2.0 | MIT License |
 | github.com/pelletier/go-toml | v1.2.0 | MIT License |
 | github.com/pelletier/go-toml | v1.4.0 | MIT License |
-| github.com/pelletier/go-toml | v1.6.0 | MIT License |
+| github.com/pelletier/go-toml | v1.8.0 | MIT License |
 | github.com/performancecopilot/speed | v3.0.0+incompatible | MIT License |
 | github.com/peterbourgon/diskv | v2.0.1+incompatible | MIT License |
 | github.com/phayes/freeport | v0.0.0-20180830031419-95f893ade6f2 | Other |
@@ -649,9 +651,9 @@ title: "Third-party Dependencies"
 | github.com/vishvananda/netlink | v1.1.0 | Apache License 2.0 |
 | github.com/vishvananda/netns | v0.0.0-20200728191858-db3c7e526aae | Apache License 2.0 |
 | github.com/vmware/govmomi | v0.20.3 | Apache License 2.0 |
-| github.com/weaveworks/cluster-api-provider-existinginfra | v0.2.4 | Apache License 2.0 |
+| github.com/weaveworks/cluster-api-provider-existinginfra | v0.2.5 | Apache License 2.0 |
 | github.com/weaveworks/common | v0.0.0-20190410110702-87611edc252e | Apache License 2.0 |
-| github.com/weaveworks/footloose | v0.0.0-20200918140536-ff126705213e | Apache License 2.0 |
+| github.com/weaveworks/footloose | v0.0.0-20210208164054-2862489574a3 | Apache License 2.0 |
 | github.com/weaveworks/go-checkpoint | v0.0.0-20170503165305-ebbb8b0518ab | Mozilla Public License 2.0 |
 | github.com/weaveworks/launcher | v0.0.0-20180824102238-59a4fcc32c9c | Apache License 2.0 |
 | github.com/weaveworks/libgitops | v0.0.2 | Apache License 2.0 |
@@ -660,7 +662,7 @@ title: "Third-party Dependencies"
 | github.com/weaveworks/wks/cmd/workspaces-controller |  | Proprietary License |
 | github.com/weaveworks/wks/common |  | Proprietary License |
 | github.com/weaveworks/wks/common | v0.0.0 | Proprietary License |
-| github.com/weaveworks/wksctl | v0.10.1 | Apache License 2.0 |
+| github.com/weaveworks/wksctl | v0.10.2 | Apache License 2.0 |
 | github.com/whilp/git-urls | v0.0.0-20191001220047-6db9661140c0 | MIT License |
 | github.com/willf/bitset | v1.1.11-0.20200630133818-d5bec3311243 | BSD 3-Clause \New\ or \Revised\ License |
 | github.com/xanzy/go-gitlab | v0.33.0 | Other |
@@ -830,7 +832,7 @@ title: "Third-party Dependencies"
 | sigs.k8s.io/cluster-api | v0.3.9 | Apache License 2.0 |
 | sigs.k8s.io/controller-runtime | v0.6.3 | Apache License 2.0 |
 | sigs.k8s.io/controller-runtime | v0.8.0 | Apache License 2.0 |
-| sigs.k8s.io/kind | v0.7.1-0.20200303021537-981bd80d3802 | Apache License 2.0 |
+| sigs.k8s.io/kind | v0.9.0 | Apache License 2.0 |
 | sigs.k8s.io/kustomize | v2.0.3+incompatible | Apache License 2.0 |
 | sigs.k8s.io/kustomize/api | v0.4.1 | Apache License 2.0 |
 | sigs.k8s.io/kustomize/kyaml | v0.6.0 | Apache License 2.0 |
@@ -891,7 +893,7 @@ title: "Third-party Dependencies"
 | jk | 0.3.2 | Apache License 2.0 |
 | footloose | 0.6.3 | Apache License 2.0 |
 | ignite | 0.8.0 | Apache License 2.0 |
-| controller | v0.10.1 | Apache License 2.0 |
+| controller | v0.10.2 | Apache License 2.0 |
 | hub | 2.14.2 | MIT License |
 # Kubernetes components
 ## Helm Charts
@@ -900,7 +902,7 @@ title: "Third-party Dependencies"
 | external-dns | 2.22.1 | Apache License 2.0| 
 | grafana | 5.0.13 | Apache License 2.0| 
 | nats | 6.1.2 | Apache License 2.0| 
-| kube-prometheus-stack | 11.0.0 | Apache License 2.0| 
+| kube-prometheus-stack | 14.4.0 | Apache License 2.0| 
 ## Cluster infrastructure 
 | Software | Version | License |
 | --- | --- | --- |

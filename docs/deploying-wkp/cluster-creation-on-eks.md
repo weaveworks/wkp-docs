@@ -37,6 +37,16 @@ Enter your `gitProvider`, `gitProviderOrg`, `dockerIOUser`, and `dockerIOPasswor
 
 Set the `track` field to `eks`, and optionally, set the `clusterName`, `clusterRegion`, and `kubernetesVersion` fields.
 
+You can provide a path to an eksctl config file directly, or set some of the commonly used configuration in the `setup/config.yaml` file.
+
+> Compatible with this version of WKP is eksctl's `ClusterConfig`, `apiVersion: eksctl.io/v1alpha5`.
+> Also, note that if an eksctl config file path is provided, it will override any other fields set in the eksConfig
+> section of the `setup/config.yaml`.
+
+A sample eksctl config file is provided in the cluster repository at `setup/eksctl-config.yaml`, for the documentation of its schema,
+please refer to the [eksctl docs](https://eksctl.io/). The config file used will be copied to `setup/eksctl-config.yaml` and
+committed to the cluster repository.
+
 The WKP UI is not publicly accessible by default. If you want to expose it via an Application Load Balancer, set the `uiALBIngress` field to `true`.
 
 Finally, enter any node group configuration you may require:

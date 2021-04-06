@@ -33,4 +33,6 @@ Finally, ensure that the following ports are open on the hosts:
 - 2379-2380 (etcd)
 - 6783-6784 (weave net)
 - 10250 (container logs)
+- 10246 (nginx status)
+- 10254 (health check)
 - 32000-32767 (node ports)
