@@ -28,8 +28,8 @@ module.exports = {
       label: 'Multi-cluster Control Plane',
       items: [
         'mccp/intro',
-        'mccp/database-configuration',
         'mccp/usage-guide',
+        'mccp/database-configuration',
       ],
     },
     {

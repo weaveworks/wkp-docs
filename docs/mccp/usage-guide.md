@@ -27,7 +27,7 @@ $ kubectl label node/ip-192-168-40-197.eu-north-1.compute.internal wkp-database-
 Now you can enable the MCCP in config.yaml.
 
 :::info
-_The MCCP also supports **PostgreSQL** or mounting SQLite on Persistent Volume instead of the host volume described here. See [Database Configuration](./database-configuration") for details._
+_The MCCP also supports **PostgreSQL** or mounting SQLite on Persistent Volume instead of the host volume described here. See [Database Configuration](./database-configuration) for details._
 :::
 
 ### 2. Enable the MCCP in config.yaml
