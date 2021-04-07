@@ -1,9 +1,6 @@
-+++
-title = "Securing the UI"
-weight = 3
-+++
-
-## Securing the UI
+---
+title: "Securing the WKP UI"
+---
 
 Before exposing the WKP UI publicly, you need to setup a way to authenticate your users as well as provision SSL certificates for the HTTPS endpoints. You also need an ingress controller that can handle ingress requests deployed either as a `LoadBalancer` or `NodePort` service.
 

@@ -1,11 +1,10 @@
-+++
-title = "Database Configuration"
-weight = 2
-+++
+---
+title: "Configuring a Database"
+---
 
-## Supported Databases
+### Supported Databases
 
-The MCCP component stores incoming data from the connected clusters in a database. It
+The Multi-cluster Control Plane (MCCP) component stores incoming data from the connected clusters in a database. It
 supports sqlite and postgres databases. To configure the type of database, modify the
 `config.yaml` file at your cluster directory:
 

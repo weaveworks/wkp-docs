@@ -1,8 +1,6 @@
-+++
-title = "Multi-cluster control plane"
-alwaysopen = true
-weight = 30
-+++
+---
+title: "What is Multi-cluster Control Plane?"
+---
 
 ## Multi-cluster control plane
 

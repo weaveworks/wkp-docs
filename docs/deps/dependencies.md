@@ -1,7 +1,6 @@
-+++
-title = "Third-party Dependencies"
-weight = 500
-+++
+---
+title: "Third-party Dependencies"
+---
 ## Third-party Dependencies 
 # Go modules
 | Module | Version | License |
