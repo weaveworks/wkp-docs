@@ -2,7 +2,7 @@
 title: "Configuring a Database"
 ---
 
-### Supported databases
+### Supported Databases
 
 The Multi-cluster Control Plane (MCCP) component stores incoming data from the connected clusters in a database. It
 supports sqlite and postgres databases. To configure the type of database, modify the
@@ -36,7 +36,6 @@ If you are opt for a postgres database, credentials for your user can be provide
 generating a sealed secret in the following way:
 
 ```bash
-kubectl create secret generic -n wkp-mccp mccp-db-credentials --from-literal=username=... --from-literal=password=... -oyaml --dry-run | kubeseal --cert setup/sealed-secrets-cert.crt -oyaml > mccp-db-credentials-wkp-mccp.yaml
 kubectl create secret generic -n wkp-gitops-repo-broker mccp-db-credentials --from-literal=username=... --from-literal=password=... -oyaml --dry-run | kubeseal --cert setup/sealed-secrets-cert.crt -oyaml > mccp-db-credentials-wkp-gitops-repo-broker.yaml
 ```
 
