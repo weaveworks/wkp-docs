@@ -67,7 +67,7 @@ const wkpGitopsRepoBroker = {
 };
 ```
 
-Commit and push the changes to `./cluster/platform/components.js`. You can now open the UI via configured ingress or with `wk ui` and connect clusters. See [How to connect a cluster]({{< ref "#how-to-connect-a-cluster" >}}) below.
+Commit and push the changes to `./cluster/platform/components.js`. You can now open the UI via configured ingress or with `wk ui` and connect clusters. See [How to connect a cluster](#how-to-connect-a-cluster) below.
 
 _Tip: You can verify that the address is externally accessible with the [`natscli`](https://github.com/nats-io/natscli):_
 
@@ -84,7 +84,7 @@ nats: error: nats: Authorization Violation, try --help
 
 ### Adding an ingress exception for `/agent.yaml`
 
-If you have configured ingress with authentication (see [Securing the UI]({{< ref "/cluster-operations/auth" >}})) you may need to add an additional ingress rule for `/gitops/api/agent.yaml` to ensure that this path is publicly accessible. The manifest below shows how to add this rule.
+If you have configured ingress with authentication (see [Securing the UI](../cluster-operations/auth) you may need to add an additional ingress rule for `/gitops/api/agent.yaml` to ensure that this path is publicly accessible. The manifest below shows how to add this rule.
 
 ```yaml
 ---
