@@ -15,7 +15,6 @@ One setup is to use **HA Proxy** as the load balancer on a machine external to t
 
 Given we're following the [creating a cluster on SSH Nodes](/deploying-wkp/cluster-creation-on-ssh-nodes.md) instructions and have specified the IPs of a **3 master** and **2 worker** cluster like so:
 
-
 ```yaml
 wksConfig:
   sshConfig:
@@ -47,15 +46,20 @@ publicAddress: 35.190.222.1
 ```
 
 - ssh to the load balancer machine to install haproxy
-  ```
+
+  ``` console
   ssh 35.190.222.1
   ```
+
 - Install haproxy with
-  ```
+
+  ``` console
   yum install haproxy
   ```
+
 - Edit `/etc/haproxy/haproxy.cfg` setting the `backend kubernetes` IP addresses to your masters' **private** IPs.
-  ```
+
+  ``` text
   frontend kubernetes *:6443
       default_backend             kubernetes
       mode tcp
@@ -79,16 +83,20 @@ publicAddress: 35.190.222.1
       stats refresh 10s
       stats admin if LOCALHOST
   ```
+
 - Restart haproxy with
-  ```
+
+  ``` console
   systemctl restart haproxy
   ```
+
 - Check that its running with `ps aux | grep haproxy`, if its not running see if its complaining about anything in particular `journalctl -u haproxy`. If its having trouble binding to a socket you might have to relax the SE restrictions with `sudo setsebool -P haproxy_connect_any=1`
 - Monitor the load balancer using the stats UI at the load balancer's public IP, in this case: http://35.190.222.1:8404/stats (Note the `/stats`! `/` will give you a 503)
 
 Your new load balancer should be ready for action. 
-Continue following the [creating a cluster on SSH Nodes]({{< ref "/deploying-wkp/cluster-creation-on-ssh-nodes" >}}) instructions, updating your `config.yaml` with the load balancer's **public IP**:
-```
+Continue following the [creating a cluster on SSH Nodes](/deploying-wkp/cluster-creation-on-ssh-nodes) instructions, updating your `config.yaml` with the load balancer's **public IP**:
+
+``` yaml
 wksConfig:
   controlPlaneLbAddress: 35.190.222.1
 ```
