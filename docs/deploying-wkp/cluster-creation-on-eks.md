@@ -1,6 +1,7 @@
----
-title: "Installing WKP to EKS"
----
++++
+title = "Cluster creation on EKS"
+weight = 7
++++
 
 ### Install the dependencies
 
@@ -12,7 +13,7 @@ On the computer that will be used for the installation, you need to install:
 
 ### Entitlements
 
-Ensure that `wk` can load a valid [entitlements](/getting-started/entitlements.md) file.
+Ensure that `wk` can load a valid [entitlements](/getting-started/entitlements) file.
 
 ### Install WKP on an EKS cluster
 
@@ -37,7 +38,7 @@ Enter your `gitProvider`, `gitProviderOrg`, `dockerIOUser`, and `dockerIOPasswor
 
 Set the `track` field to `eks`, and optionally, set the `clusterName`, `clusterRegion`, and `kubernetesVersion` fields.
 
-You can provide a path to an eksctl config file directly, or set some of the commonly used configuration in the `setup/config.yaml` file.
+You can provide a path to an eksctl config file directly to configure any of the available options, or set some of the commonly used configuration in the `setup/config.yaml` file.
 
 > Compatible with this version of WKP is eksctl's `ClusterConfig`, `apiVersion: eksctl.io/v1alpha5`.
 > Also, note that if an eksctl config file path is provided, it will override any other fields set in the eksConfig
@@ -79,7 +80,7 @@ Finally, make sure your AWS CLI credentials are [configured properly](https://do
 Now we are ready to install the cluster:
 
 ```bash
-wk setup run
+{{<param "clicmd" >}} setup run
 ```
 
 ### Access the WKP UI
