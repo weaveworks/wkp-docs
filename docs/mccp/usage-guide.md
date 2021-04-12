@@ -14,7 +14,7 @@ Enabling the MCCP requires we:
 
 The default MCCP database configuration will use **SQLite** on a _Host Volume_. For all the MCCP pods to be able to access this host volume they must be on the same node. We can do this by applying a label to one of the cluster worker nodes:
 
-```
+``` console
 # list all worker nodes
 $ kubectl get node --selector='!node-role.kubernetes.io/master' -o name
 node/ip-192-168-40-197.eu-north-1.compute.internal
@@ -43,7 +43,7 @@ When connecting a leaf cluster a set of manifests are applied to with `kubectl a
 
 Once the MCCP has started up you'll see a NATS `NodePort` service running the in `wkp-gitops-repo-broker` namespace:
 
-```
+``` console
 $ kubectl get services -n wkp-gitops-repo-broker nats-client
 NAME          TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
 nats-client   NodePort   10.100.14.240   <none>        4222:32545/TCP   20d
