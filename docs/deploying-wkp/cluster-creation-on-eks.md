@@ -1,5 +1,5 @@
 ---
-title = "Cluster creation on EKS"
+title: "Cluster creation on EKS"
 ---
 
 ### Install the dependencies
