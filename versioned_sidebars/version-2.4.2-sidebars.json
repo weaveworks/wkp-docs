@@ -50,10 +50,6 @@
         },
         {
           "type": "doc",
-          "id": "version-2.4.2/deploying-wkp/cluster-creation-on-ssh-nodes"
-        },
-        {
-          "type": "doc",
           "id": "version-2.4.2/deploying-wkp/cluster-creation-on-footloose"
         }
       ]
