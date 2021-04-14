@@ -33,7 +33,7 @@ echo 'my-dockerhub-password' > ~/.wks/dockerhub-password
 chmod 600 ~/.wks/dockerhub-password
 ```
 
-Enter your `gitProvider`, `gitProviderOrg`, `dockerIOUser`, and `dockerIOPasswordFile` in your `setup/config.yaml`. (See [Git Config Repository]({{< ref "/getting-started/git-config-repository" >}}) for details about git parameters)
+Enter your `gitProvider`, `gitProviderOrg`, `dockerIOUser`, and `dockerIOPasswordFile` in your `setup/config.yaml`. (See [Git Config Repository](/docs/getting-started/git-config-repository) for details about git parameters)
 
 Set the `track` field to `eks`, and optionally, set the `clusterName`, `clusterRegion`, and `kubernetesVersion` fields.
 
