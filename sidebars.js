@@ -19,7 +19,6 @@ module.exports = {
         'deploying-wkp/cluster-creation-on-ssh-nodes',
         'deploying-wkp/components-on-existing-cluster',
         'deploying-wkp/cluster-creation-on-eks',
-        'deploying-wkp/cluster-creation-on-ssh-nodes',
         'deploying-wkp/cluster-creation-on-footloose',
       ],
     },
