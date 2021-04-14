@@ -1,0 +1,253 @@
+{
+  "version-2.5.0/docs": [
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Getting Started",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.5.0/getting-started/introduction"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/getting-started/wk"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/getting-started/entitlements"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/getting-started/git-config-repository"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/getting-started/known-issues"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Deploying WKP",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.5.0/deploying-wkp/hosts"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/deploying-wkp/cluster-creation-on-ssh-nodes"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/deploying-wkp/components-on-existing-cluster"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/deploying-wkp/cluster-creation-on-eks"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/deploying-wkp/cluster-creation-on-ssh-nodes"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/deploying-wkp/cluster-creation-on-footloose"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Multi-cluster Control Plane",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.5.0/mccp/intro"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/mccp/usage-guide"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/mccp/database-configuration"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Team Workspaces",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.5.0/team-workspaces/usage-guide"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/team-workspaces/team-permissions"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/team-workspaces/member-guide"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Cluster Operations",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.5.0/cluster-operations/user-workloads"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/cluster-operations/adding-removing-nodes"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/cluster-operations/upgrading-kubernetes-version"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/cluster-operations/custom-kubernetes-configuration"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/cluster-operations/auth"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/cluster-operations/managing-secrets"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/cluster-operations/sealing-key"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Monitoring",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.5.0/monitoring/introduction"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/monitoring/alerts"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/monitoring/dashboards"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Tasks",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.5.0/tasks/control-plane-load-balancers"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/tasks/using-the-eks-d-distribution"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/tasks/multiple-cluster-admins"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/tasks/patching-node-os-packages"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/tasks/profiling-kubectl"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Troubleshooting",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.5.0/troubleshooting/help"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/troubleshooting/kubelet"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/troubleshooting/controller"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/troubleshooting/scope"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/tasks/patching-node-os-packages"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/tasks/profiling-kubectl"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "FAQ",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.5.0/FAQ/faq"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Reference",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.5.0/reference/reference"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/reference/cluster"
+        },
+        {
+          "type": "doc",
+          "id": "version-2.5.0/reference/machines"
+        }
+      ]
+    },
+    {
+      "collapsed": true,
+      "type": "category",
+      "label": "Thirdparty Dependencies",
+      "items": [
+        {
+          "type": "doc",
+          "id": "version-2.5.0/deps/dependencies"
+        }
+      ]
+    }
+  ]
+}
