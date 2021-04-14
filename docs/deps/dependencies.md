@@ -888,7 +888,7 @@ title: "Third-party Dependencies"
 # Runtime Dependencies
 | Program | Version | License |
 | --- | --- | --- |
-| eksctl | 0.31.0 | Apache License 2.0 |
+| eksctl | 0.43.0 | Apache License 2.0 |
 | jk | 0.3.2 | Apache License 2.0 |
 | footloose | 0.6.3 | Apache License 2.0 |
 | ignite | 0.8.0 | Apache License 2.0 |
@@ -898,6 +898,7 @@ title: "Third-party Dependencies"
 ## Helm Charts
 | Chart | Version | License |
 | --- | --- | --- |
+| aws-load-balancer-controller | 1.1.6 | Apache License 2.0| 
 | external-dns | 2.22.1 | Apache License 2.0| 
 | grafana | 5.0.13 | Apache License 2.0| 
 | nats | 6.1.2 | Apache License 2.0| 
