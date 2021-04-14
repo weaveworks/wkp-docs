@@ -12,7 +12,7 @@ const features = [
    // imageUrl: 'img/undraw_docusaurus_mountain.svg',
     description: (
       <>
-        Find out what's new in <a href ="https://github.com/weaveworks/wks/releases">this release.</a> 
+        Find out what's new in <a href ="https://github.com/weaveworks/wks/releases">this release.</a>
       </>
     ),
   },
@@ -21,7 +21,7 @@ const features = [
    // imageUrl: 'img/undraw_docusaurus_tree.svg',
     description: (
       <>
-       <a href="https://docs.weave.works/docs/troubleshooting/help"> Troubleshoot </a> kubelet, wks-controller and other issues.  
+       <a href="https://docs.wkp.weave.works/docs/troubleshooting/help"> Troubleshoot </a> kubelet, wks-controller and other issues.
       </>
     ),
   },
@@ -63,8 +63,8 @@ export default function Home() {
           <h1 className="hero__title">{siteConfig.title}</h1>
           <p className="hero__subtitle">{siteConfig.tagline}</p>
           <p> Reduce the complexity of operating Kubernetes with GitOps and enable your team to deliver fast and secure cloud native applications.
-Automate platform configuration for common use cases such as monitoring and machine learning. 
-Rollout reproducible cluster stacks to different environments from development to staging to production and simplify operations. 
+Automate platform configuration for common use cases such as monitoring and machine learning.
+Rollout reproducible cluster stacks to different environments from development to staging to production and simplify operations.
 Reduce day 2 operation problems with WKP’s sophisticated cluster life-cycle management of maintenance, upgrades and patches to scale cluster fleet management across multiple clouds, on-premise and at the edge.</p>
           <div className={styles.buttons}>
             <Link
