@@ -12,7 +12,7 @@ Here is an overview of the steps necessary to expose and secure your cluster
 
 ### Ingress Controller {#ingress-controller}
 
-If you already have an ingress controller running on your WKP cluster, feel free to skip to the next section. Otherwise, use the following manifest to install the NGINX ingress controller as a `NodePort` service.
+If you already have an ingress controller running on your WKP cluster, excluding the WKP UI ingress controller as it is reserved for the components, feel free to skip to the next section. Otherwise, use the following manifest to install the NGINX ingress controller as a `NodePort` service.
 
 ```
 ---

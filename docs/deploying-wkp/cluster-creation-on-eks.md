@@ -1,7 +1,6 @@
-+++
+---
 title = "Cluster creation on EKS"
-weight = 7
-+++
+---
 
 ### Install the dependencies
 
@@ -13,7 +12,7 @@ On the computer that will be used for the installation, you need to install:
 
 ### Entitlements
 
-Ensure that `wk` can load a valid [entitlements](/getting-started/entitlements) file.
+Ensure that `wk` can load a valid [entitlements](/docs/getting-started/entitlements) file.
 
 ### Install WKP on an EKS cluster
 
@@ -80,7 +79,7 @@ Finally, make sure your AWS CLI credentials are [configured properly](https://do
 Now we are ready to install the cluster:
 
 ```bash
-{{<param "clicmd" >}} setup run
+wk setup run
 ```
 
 ### Access the WKP UI

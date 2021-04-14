@@ -94,7 +94,7 @@ publicAddress: 35.190.222.1
 - Monitor the load balancer using the stats UI at the load balancer's public IP, in this case: http://35.190.222.1:8404/stats (Note the `/stats`! `/` will give you a 503)
 
 Your new load balancer should be ready for action. 
-Continue following the [creating a cluster on SSH Nodes](/deploying-wkp/cluster-creation-on-ssh-nodes) instructions, updating your `config.yaml` with the load balancer's **public IP**:
+Continue following the [creating a cluster on SSH Nodes](/docs/deploying-wkp/cluster-creation-on-ssh-nodes) instructions, updating your `config.yaml` with the load balancer's **public IP**:
 
 ``` yaml
 wksConfig:
