@@ -4,7 +4,7 @@ title: "Configuring EKS-D"
 
 ### What is EKS-D?
 
-Amazon has made the Kubernetes distribution underlying EKS available to run in other environments outside EKS. Becauase of this, it's now possible to run an application in an identical Kubernetes environment, regardless of whether or not it is hosted within AWS. Starting with release 2.4.2, WKP supports creating clusters running EKS-D.
+Amazon has made the Kubernetes distribution underlying EKS available to run in other environments outside EKS. Because of this, it's now possible to run an application in an identical Kubernetes environment, regardless of whether or not it is hosted within AWS. Starting with release 2.4.2, WKP supports creating clusters running EKS-D.
 
 ## Using EKS-D with WKP
 

@@ -28,10 +28,10 @@ Some example alerts are included in the `cluster/manifests` folder of your confi
 
 1. Open the `example-alerts.yaml` file in `cluster/manifests`
 1. Uncomment the contents of the file.
-1. Modify and add new alert definitions to the file. (See [additional resources]({{< ref "#additional-resources" >}}) for more detailed information about Alertmanager's alert format and options.)
+1. Modify and add new alert definitions to the file. (See [additional resources](#additional-resources) for more detailed information about Alertmanager's alert format and options.)
 1. `git commit` and `git push` the changes to your config repoistory.
 
-Flux will detect the change and add the new alerts into the cluster. Check that the new alert has been loaded by following [view active alert definitions]({{< ref "#view-active-alert-definitions" >}}) above.
+Flux will detect the change and add the new alerts into the cluster. Check that the new alert has been loaded by following [view active alert definitions](#view-active-alert-definitions) above.
 
 ### Additional resources
 

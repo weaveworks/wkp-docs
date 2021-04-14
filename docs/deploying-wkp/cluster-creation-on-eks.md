@@ -1,5 +1,5 @@
 ---
-title: "Installing WKP to EKS"
+title = "Cluster creation on EKS"
 ---
 
 ### Install the dependencies
@@ -12,7 +12,7 @@ On the computer that will be used for the installation, you need to install:
 
 ### Entitlements
 
-Ensure that `wk` can load a valid [entitlements](/getting-started/entitlements.md) file.
+Ensure that `wk` can load a valid [entitlements](/docs/getting-started/entitlements) file.
 
 ### Install WKP on an EKS cluster
 
@@ -20,7 +20,7 @@ First, create a directory which will contain the cluster management scripts and 
 
 ```bash
 mkdir wkp-eks-cluster && cd wkp-eks-cluster
-{{<param "clicmd" >}} setup install --entitlements=/path/to/my/entitlements
+wk setup install --entitlements=/path/to/my/entitlements
 ```
 
 The main configuration file will be unpacked at `setup/config.yaml`.
@@ -33,11 +33,11 @@ echo 'my-dockerhub-password' > ~/.wks/dockerhub-password
 chmod 600 ~/.wks/dockerhub-password
 ```
 
-Enter your `gitProvider`, `gitProviderOrg`, `dockerIOUser`, and `dockerIOPasswordFile` in your `setup/config.yaml`. (See [Git Config Repository]({{< ref "/getting-started/git-config-repository" >}}) for details about git parameters)
+Enter your `gitProvider`, `gitProviderOrg`, `dockerIOUser`, and `dockerIOPasswordFile` in your `setup/config.yaml`. (See [Git Config Repository](/getting-started/git-config-repository) for details about git parameters)
 
 Set the `track` field to `eks`, and optionally, set the `clusterName`, `clusterRegion`, and `kubernetesVersion` fields.
 
-You can provide a path to an eksctl config file directly, or set some of the commonly used configuration in the `setup/config.yaml` file.
+You can provide a path to an eksctl config file directly to configure any of the available options, or set some of the commonly used configuration in the `setup/config.yaml` file.
 
 > Compatible with this version of WKP is eksctl's `ClusterConfig`, `apiVersion: eksctl.io/v1alpha5`.
 > Also, note that if an eksctl config file path is provided, it will override any other fields set in the eksConfig
