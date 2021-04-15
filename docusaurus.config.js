@@ -21,38 +21,41 @@ module.exports = {
       },
       items: [
         {
-          to: 'docs/',
-          activeBasePath: 'docs',
+          type: 'doc',
+          docId: 'getting-started/introduction',
           label: 'Getting Started',
           position: 'left',
         },
         {
-          to: 'docs/deploying-wkp/hosts',
-          activeBasePath:'docs' ,
+          type: 'doc',
+          docId: 'deploying-wkp/hosts',
           label: 'Install',
           position: 'left',
         },
         {
-          to: 'docs/tasks/using-the-eks-d-distribution',
-          activeBasePath:'docs' ,
+          type: 'doc',
+          docId: 'tasks/using-the-eks-d-distribution',
           label: 'Tasks',
           position: 'left',
         },
         {
-          to: 'docs/cluster-operations/user-workloads',
-          activeBasePath:'docs' ,
+          type: 'doc',
+          docId: 'cluster-operations/user-workloads',
           label: 'Cluster Operations',
           position: 'left',
         },
-
-        // {to: 'blog', label: 'Blog', position: 'left'},
         // right
+        {
+          type: 'doc',
+          docId: 'release-notes',
+          position: 'right',
+          label: 'Release Notes',
+        },
         {
          type: 'docsVersionDropdown',
          position: 'right',
          dropdownActiveClassDisabled: true,
        },
-        
         {
           href: 'https://github.com/weaveworks/wkp-docs/tree/main',
           label: 'GitHub',
@@ -63,7 +66,7 @@ module.exports = {
    footer: {
       style: 'dark',
       links: [
-        
+
         {
           title: 'Support',
           items: [
@@ -73,10 +76,10 @@ module.exports = {
             },
           ],
          },
-      ], 
+      ],
       copyright: `Copyright © ${new Date().getFullYear()} Weaveworks`,
-    }, 
-  }, 
+    },
+  },
   presets: [
     [
       '@docusaurus/preset-classic',

@@ -9,25 +9,22 @@ import styles from './styles.module.css';
 const features = [
   {
     title: 'Release Notes',
-   // imageUrl: 'img/undraw_docusaurus_mountain.svg',
     description: (
       <>
-        Find out what's new in <a href ="https://github.com/weaveworks/wks/releases">this release.</a>
+        Find out what's new in <a href ="/docs/release-notes">this release.</a>
       </>
     ),
   },
   {
     title: 'Troubleshooting',
-   // imageUrl: 'img/undraw_docusaurus_tree.svg',
     description: (
       <>
-       <a href="https://docs.wkp.weave.works/docs/troubleshooting/help"> Troubleshoot </a> kubelet, wks-controller and other issues.
+       <a href="/docs/troubleshooting/help"> Troubleshoot </a> kubelet, wks-controller and other issues.
       </>
     ),
   },
   {
     title: 'WKP downloads',
-    // imageUrl: 'img/undraw_docusaurus_react.svg',
     description: (
       <>
         Download a version of WKP.

@@ -244,6 +244,10 @@
           "id": "version-2.5.0/deps/dependencies"
         }
       ]
+    },
+    {
+      "type": "doc",
+      "id": "version-2.5.0/release-notes"
     }
   ]
 }
