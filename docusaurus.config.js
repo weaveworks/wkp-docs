@@ -47,6 +47,12 @@ module.exports = {
         // right
         {
           type: 'doc',
+          docId: 'download',
+          position: 'right',
+          label: 'WKP Downloads',
+        },
+        {
+          type: 'doc',
           docId: 'release-notes',
           position: 'right',
           label: 'Release Notes',

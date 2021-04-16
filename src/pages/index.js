@@ -27,7 +27,7 @@ const features = [
     title: 'WKP downloads',
     description: (
       <>
-        Download a version of WKP.
+        <a href="/docs/download">Download</a> a version of WKP.
       </>
     ),
   },
