@@ -19,4 +19,4 @@ chmod +x wk
 mv wk /usr/local/bin/
 ```
 
-Where `version` is the desired version, e.g. `2.0.3` and `os` is `linux` or `darwin`. Only `amd64` architectures are supported at this time.
+Where `version` is the desired version, e.g. `v2.5.0` and `os` is `linux` or `darwin`. Only `amd64` architectures are supported at this time.
