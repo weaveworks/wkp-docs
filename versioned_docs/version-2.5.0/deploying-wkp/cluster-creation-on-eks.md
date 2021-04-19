@@ -179,5 +179,5 @@ Recommended instance types for AWS:
 You can use the `cleanup.sh` script:
 
 ```bash
-./setup/cleanup.sh {{<param "clicmd" >}}
+./setup/cleanup.sh
 ```

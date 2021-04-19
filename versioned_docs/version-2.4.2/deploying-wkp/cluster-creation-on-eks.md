@@ -20,7 +20,7 @@ First, create a directory which will contain the cluster management scripts and 
 
 ```bash
 mkdir wkp-eks-cluster && cd wkp-eks-cluster
-{{<param "clicmd" >}} setup install --entitlements=/path/to/my/entitlements
+wk setup install --entitlements=/path/to/my/entitlements
 ```
 
 The main configuration file will be unpacked at `setup/config.yaml`.
@@ -169,5 +169,5 @@ Recommended instance types for AWS:
 You can use the `cleanup.sh` script:
 
 ```bash
-./setup/cleanup.sh {{<param "clicmd" >}}
+./setup/cleanup.sh
 ```
