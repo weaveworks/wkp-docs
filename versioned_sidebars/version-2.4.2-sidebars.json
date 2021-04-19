@@ -226,6 +226,10 @@
     },
     {
       "type": "doc",
+      "id": "version-2.4.2/download"
+    },
+    {
+      "type": "doc",
       "id": "version-2.4.2/release-notes"
     }
   ]

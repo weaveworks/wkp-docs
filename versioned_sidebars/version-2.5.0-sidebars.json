@@ -247,6 +247,10 @@
     },
     {
       "type": "doc",
+      "id": "version-2.5.0/download"
+    },
+    {
+      "type": "doc",
       "id": "version-2.5.0/release-notes"
     }
   ]
