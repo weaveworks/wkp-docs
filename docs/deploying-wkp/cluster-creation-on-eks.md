@@ -134,7 +134,7 @@ managedNodeGroups:
     minSize: 2
     desiredCapacity: 3
     maxSize: 4
-    availabilityZones: ["us-east-2a", "us-east-2b"]
+    availabilityZones: ['us-east-2a', 'us-east-2b']
     volumeSize: 20
     ssh:
       allow: true
