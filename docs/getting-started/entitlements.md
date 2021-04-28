@@ -8,7 +8,7 @@ granted by the commercial agreement with Weaveworks.
 There are three options to instruct `wk` where to find those entitlements
 files. The options are checked in the order specified.
 
-- The `--entitlements` CLI option can be specfied:
+- The `--entitlements` CLI option can be specified:
 
 ```console
 wk setup install --entitlements /path/to/file.entitlements
