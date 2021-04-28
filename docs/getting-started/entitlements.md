@@ -27,6 +27,10 @@ To check the current entitlements, run:
 ```console
 export WKP_ENTITLEMENTS=/path/to/file.entitlements
 wk entitlements
+```
+And the output should look like this:
+
+```console
 Customer    Company Name
 Nodes       15
 Versions    > 1.10.0 < 1.11.0
