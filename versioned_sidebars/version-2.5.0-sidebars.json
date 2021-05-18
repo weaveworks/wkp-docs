@@ -119,6 +119,10 @@
         },
         {
           "type": "doc",
+          "id": "version-2.5.0/cluster-operations/nats-tls"
+        },
+        {
+          "type": "doc",
           "id": "version-2.5.0/cluster-operations/managing-secrets"
         },
         {

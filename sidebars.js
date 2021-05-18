@@ -49,6 +49,7 @@ module.exports = {
         'cluster-operations/upgrading-kubernetes-version',
         'cluster-operations/custom-kubernetes-configuration',
         'cluster-operations/auth',
+        'cluster-operations/nats-tls',
         'cluster-operations/managing-secrets',
         'cluster-operations/sealing-key',
       ],
