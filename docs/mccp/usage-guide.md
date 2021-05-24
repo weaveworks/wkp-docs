@@ -2,13 +2,15 @@
 title: "Usage guide"
 ---
 
-## How to: Enable the MCCP feature
+## How to: Install MCCP via a helm chart
 
-Enabling the MCCP requires we:
+Installing the MCCP requires we:
 
-1. Choose and configure the database in `config.yaml`
-2. Enable the `fleetManagement` feature in `config.yaml`
-3. Configure the ingress address for NATS that an agent running on a leaf cluster will connect to.
+1. Choose and configure the database in `values.yaml`
+2. Enable the `fleetManagement` feature in `values.yaml`
+3. Create a secret for docker repository
+4. Determine your host IP address
+5. Install the MCCP helm chart
 
 ### 1. Choosing a database
 
@@ -24,92 +26,119 @@ node/ip-192-168-68-212.eu-north-1.compute.internal
 $ kubectl label node/ip-192-168-40-197.eu-north-1.compute.internal wkp-database-volume-node=true
 ```
 
-Now you can enable the MCCP in config.yaml.
+Now you can install the MCCP.
 
 :::info
 _The MCCP also supports **PostgreSQL** or mounting SQLite on Persistent Volume instead of the host volume described here. See [Database Configuration](./database-configuration) for details._
 :::
 
-### 2. Enable the MCCP in config.yaml
+### 2. Enable the MCCP in values.yaml
 
-To enable the MCCP feature edit the `setup/config.yaml` file, set the `enabledFeatures: fleetManagement`
-field to `true`, commit and push to the cluster repository.
+To install  MCCP edit the `values.yaml` file, set the `featureGates: fleetManagement`
+field to `true`.
 
-After a few seconds, the MCCP components are deployed in the `wkp-gitops-repo-broker` namespace.
+### 3. Create a secret for docker repository
 
-### 3. Set the ingress address for NATS
+Create a secret that contains your docker repository credentials that will be used to pull down the images. You can find instructions on how to generate this secret [here](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/).
 
-When connecting a leaf cluster a set of manifests are applied to with `kubectl apply -f https://wkp-host/gitops/api/agent.yaml?token=abc`. We set the NATS url that is included in `agent.yaml` (that the agent will use to connect to the management cluster) by editing `./cluster/platform/components.js`.
-
-Once the MCCP has started up you'll see a NATS `NodePort` service running the in `wkp-gitops-repo-broker` namespace:
-
-``` console
-$ kubectl get services -n wkp-gitops-repo-broker nats-client
-NAME          TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
-nats-client   NodePort   10.100.14.240   <none>        4222:32545/TCP   20d
-```
-
-Take the port (in this case 32545) and update the `wkpGitopsRepoBroker` params with the _external address_ of the host (this can be an IP or a hostname) and port discovered above.
-
-```javascript
-const wkpGitopsRepoBroker = {
-  // ...
-  params: {
-    // ...
-    agentTemplate: {
-      natsURL: '123.123.123.123:32454',
-      // Could also be a hostname
-      // "natsURL": "wkp-host:32454",
-    },
-    // ...
-  },
-  // ...
-};
-```
-
-Commit and push the changes to `./cluster/platform/components.js`. You can now open the UI via configured ingress or with `wk ui` and connect clusters. See [How to connect a cluster](#how-to-connect-a-cluster) below.
-
-_Tip: You can verify that the address is externally accessible with the [`natscli`](https://github.com/nats-io/natscli):_
+Add this secret to the target namespace. This needs to be the same namespace that the Helm chart will be installed.
 
 ```bash
-# Wrong host/port will give a connection error
-$ nats sub test --server wkp-host:1234
-nats: error: nats: no servers available for connection, try --help
-
-# Correct host/port will give an auth error!
-# (This is fine we are not providing credentials here just testing the connection)
-$ nats sub test --server wkp-host:32545
-nats: error: nats: Authorization Violation, try --help
+> kubectl apply -f docker-io-pull-secret.yaml --namespace mccp
 ```
 
-### Adding an ingress exception for `/agent.yaml`
+Take note of the secret name as you will need to supply it later when installing the chart.
 
-If you have configured ingress with authentication (see [Securing the UI](../cluster-operations/auth) you may need to add an additional ingress rule for `/gitops/api/agent.yaml` to ensure that this path is publicly accessible. The manifest below shows how to add this rule.
+### 4. Get host IP address
+
+Determine your host IP address. If you are on wifi run this command:
+
+```bash
+> ipconfig getifaddr en0
+> 192.168.0.1
+```
+
+Take note of the IP address as you will need to supply it later when installing the chart. This is necessary in order to establish connectivity between agents and your MCCP instance.
+
+### 5. Install the helm chart
+
+Finally install the Helm chart to the target namespace by creating a `kind: HelmRelease` file that looks like this:
 
 ```yaml
----
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
 metadata:
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-  name: wkp-ui-agent-no-auth
+  name: wkp-ui
   namespace: wkp-ui
 spec:
-  rules:
-    - host: <hostname-to-use> # e.g. app.wkp.weave.works
-      http:
-        paths:
-          - path: /gitops/api/agent.yaml
-            backend:
-              serviceName: wkp-ui-nginx-ingress-controller
-              servicePort: 80
-  tls:
-    - hosts:
-        - <hostname-to-use> # e.g. app.wkp.weave.works
-      secretName: wkp-tls
+  releaseName: wkp-ui
+  chart:
+    name: wkp-ui
+    version: {{chart.version}}
+    repository: "https://s3.us-east-1.amazonaws.com/weaveworks-wkp/charts/"
+  forceUpgrade: true
+  values:
+    image:
+      pullSecrets:
+        - docker-io-pull-secret
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: 'wkp-nginx'
+        {{#if authSecret}}
+        nginx.ingress.kubernetes.io/auth-type: basic
+        nginx.ingress.kubernetes.io/auth-secret: auth-secret
+        {{/if}}
+        nginx.ingress.kubernetes.io/rewrite-target: /$1
+      hosts: ['']
+      path: '{{endpoints.ui}}?(.*)'
+    config:
+      demoMode: {{chart.values.config.demoMode}}
+      featureGates:
+        teamWorkspaces: {{chart.values.config.featureGates.teamWorkspaces}}
+        fleetManagement: {{chart.values.config.featureGates.fleetManagement}}
+      gitRepo:
+        provider: {{ git.provider }}
+        url: {{ git.url }}
+        branch: {{ git.branch }}
+      datasources:
+        alertmanager: /alertmanager/api/v1
+        prometheus: /prometheus/api/v1
+      drilldownLinksById:
+        cluster_resources:
+          url: /grafana/d/all-nodes-resources/kubernetes-all-nodes-resources
+        node_resources:
+          url: /grafana/d/single-node-resources/kubernetes-single-node-resources
+        alertmanager_dashboard:
+          url: /alertmanager/#/alerts
+      resourcesById:
+        node_cpu_utilisation:
+          query: label_replace(instance:node_cpu_utilisation:rate1m, "node", "$1", "instance", "(.*)")
+        node_memory_utilisation:
+          query: label_replace(instance:node_memory_utilisation:ratio, "node", "$1", "instance", "(.*)")
+        node_pods_count:
+          query: kubelet_running_pods or kubelet_running_pod_count
+      clusterInfo:
+        name: {{chart.values.config.clusterInfo.name}}
+        provider: {{chart.values.config.clusterInfo.provider}}
+        regions: {{chart.values.config.clusterInfo.regions}}
+        track: {{chart.values.config.clusterInfo.track}}
+        managementClusterLink: {{chart.values.config.clusterInfo.managementClusterLink}}
+      homepage:
+        clusterComponents:
+          configMap:
+            name: wkp-ui-cluster-components-config
+            key: components.json
 ```
+
+### 6. Check MCCP is installed
+
+You should now be able to load the MCCP UI by running the following command:
+
+```bash
+> kubectl port-forward --namespace mccp deployments.apps/mccp-nginx-ingress-controller 8000:80
+```
+The MCCP UI should now be accessible at `http://localhost:8000`.
 
 ## How to: Connect a cluster {#how-to-connect-a-cluster}
 
