@@ -94,8 +94,8 @@ The database credentials (user and password) need to be provided separately, bef
 ```bash
 $ kubectl create secret generic mccp-db-credentials \
     --namespace mccp \
-    --from-literal=username=... \
-    --from-literal=password=...
+    --from-literal=username=<database-user> \
+    --from-literal=password=<database-password>
 ```
 
   </TabItem>
@@ -108,8 +108,13 @@ Create a secret that contains your docker repository credentials. This secret wi
 Add this secret to the target namespace. This needs to be the same namespace that the Helm chart will be installed.
 
 ```bash
-$ kubectl apply -f docker-io-pull-secret.yaml --namespace mccp
+$ kubectl create secret docker-registry \
+  --namespace mccp docker-io-pull-secret \
+  --docker-username=<your-docker-username> \
+  --docker-password=<your-docker-password>
 ```
+
+If you use a secrets management solution such as Sealed Secrets follow their instructions on how to create a new secret.
 
 Take note of the secret name as you will need to supply it later when installing the chart.
 
