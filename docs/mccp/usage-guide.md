@@ -156,9 +156,6 @@ $ helm install mccp wkpv3/mccp \
     --version <chart-version> \
     --namespace mccp \
     --set "imagePullSecrets[0].name=<secret-containing-docker-config>" \
-    --set "dbConfig.databaseType=sqlite" \
-    --set "sqliteConfig.hostPathVolume=true" \
-    --set "sqliteConfig.path=<host-path>" \
     --set "agentTemplate.natsURL=<nats-address>:<exposed-port-for-nats>" \
     --set "nats.client.service.nodePort=<exposed-port-for-nats>" \
     --set "wkp-ui.image.pullSecrets[0]=<secret-containing-docker-config>"
