@@ -192,6 +192,8 @@ $ helm install mccp wkpv3/mccp \
     --set "wkp-ui.image.pullSecrets[0]=<secret-containing-docker-config>"
 ```
 
+By default, connections to PostgreSQL will use port 5432.
+
   </TabItem>
 </Tabs>
 
