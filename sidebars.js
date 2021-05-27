@@ -28,7 +28,6 @@ module.exports = {
       items: [
         'mccp/intro',
         'mccp/usage-guide',
-        'mccp/database-configuration',
       ],
     },
     {

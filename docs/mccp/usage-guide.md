@@ -1,20 +1,52 @@
 ---
-title: "Usage guide"
+title: Usage guide
 ---
 
-## How to: Enable the MCCP feature
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-Enabling the MCCP requires we:
+## How to: Install MCCP using a Helm chart
 
-1. Choose and configure the database in `config.yaml`
-2. Enable the `fleetManagement` feature in `config.yaml`
-3. Configure the ingress address for NATS that an agent running on a leaf cluster will connect to.
+Installing MCCP requires we:
 
-### 1. Choosing a database
+1. Create a namespace
+2. Choose a database
+3. Create a secret for docker repository
+4. Determine the public IP address of the worker nodes
+5. Install the MCCP helm chart
+6. Check that MCCP has been installed (optional)
 
-The default MCCP database configuration will use **SQLite** on a _Host Volume_. For all the MCCP pods to be able to access this host volume they must be on the same node. We can do this by applying a label to one of the cluster worker nodes:
+### 1. Creating a namespace
 
-``` console
+Create a new namespace that will be used to run the MCCP components:
+
+```bash
+$ kubectl create namespace mccp
+```
+
+### 2. Choosing a database
+
+MCCP stores incoming data from the connected clusters to a relational database. It supports **SQLite** and **PostgreSQL**. When using **SQLite** the database file may be stored on a host path volume or on a persistent volume. By default, MCCP will use **SQLite on a host path volume**.
+
+:::info
+
+Installing MCCP in its default configuration is ideal for trying it out but it is not recommended for production use. Using a SQLite database on a persistent volume or a cloud-hosted PostgreSQL database allows for increased reliability and scalability.
+
+:::
+
+<Tabs
+  groupId="database-systems"
+  defaultValue="sqlite-host-path-volume"
+  values={[
+    {label: 'SQLite on a host path volume', value: 'sqlite-host-path-volume'},
+    {label: 'SQLite on a persistent volume', value: 'sqlite-persistent-volume'},
+    {label: 'PostgreSQL', value: 'postgres'},
+  ]}>
+  <TabItem value="sqlite-host-path-volume">
+
+In this configuration, the database file is stored on one of the cluster worker nodes. In order for all the MCCP pods to be able to access the host volume, they must be placed on the same node. We can enforce this by applying a label to one of the cluster worker nodes:
+
+```bash
 # list all worker nodes
 $ kubectl get node --selector='!node-role.kubernetes.io/master' -o name
 node/ip-192-168-40-197.eu-north-1.compute.internal
@@ -24,92 +56,156 @@ node/ip-192-168-68-212.eu-north-1.compute.internal
 $ kubectl label node/ip-192-168-40-197.eu-north-1.compute.internal wkp-database-volume-node=true
 ```
 
-Now you can enable the MCCP in config.yaml.
+This label will ensure that the MCCP pods will be deployed and run on the selected node.
+  
+  </TabItem>
+  <TabItem value="sqlite-persistent-volume">
 
-:::info
-_The MCCP also supports **PostgreSQL** or mounting SQLite on Persistent Volume instead of the host volume described here. See [Database Configuration](./database-configuration) for details._
-:::
+  If your cluster supports persistent volume storage and has a storage class defined, you can use it to request a persistent volume for the SQLite database file. The exact details of the persistent volume request vary by cluster type and the supported volume types. The following manifest is an example of a configuration of a `PersistentVolumeClaim`:
 
-### 2. Enable the MCCP in config.yaml
+  ```yaml
+  apiVersion: v1
+  kind: PersistentVolumeClaim
+  metadata:
+    name: mccp-volume
+    namespace: mccp
+  spec:
+    storageClassName: default
+    resources:
+      requests:
+        storage: 100G
+    volumeMode: Filesystem
+    accessModes:
+      - ReadWriteOnce
+  ```
 
-To enable the MCCP feature edit the `setup/config.yaml` file, set the `enabledFeatures: fleetManagement`
-field to `true`, commit and push to the cluster repository.
+  </TabItem>
+  <TabItem value="postgres">
 
-After a few seconds, the MCCP components are deployed in the `wkp-gitops-repo-broker` namespace.
-
-### 3. Set the ingress address for NATS
-
-When connecting a leaf cluster a set of manifests are applied to with `kubectl apply -f https://wkp-host/gitops/api/agent.yaml?token=abc`. We set the NATS url that is included in `agent.yaml` (that the agent will use to connect to the management cluster) by editing `./cluster/platform/components.js`.
-
-Once the MCCP has started up you'll see a NATS `NodePort` service running the in `wkp-gitops-repo-broker` namespace:
-
-``` console
-$ kubectl get services -n wkp-gitops-repo-broker nats-client
-NAME          TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
-nats-client   NodePort   10.100.14.240   <none>        4222:32545/TCP   20d
-```
-
-Take the port (in this case 32545) and update the `wkpGitopsRepoBroker` params with the _external address_ of the host (this can be an IP or a hostname) and port discovered above.
-
-```javascript
-const wkpGitopsRepoBroker = {
-  // ...
-  params: {
-    // ...
-    agentTemplate: {
-      natsURL: '123.123.123.123:32454',
-      // Could also be a hostname
-      // "natsURL": "wkp-host:32454",
-    },
-    // ...
-  },
-  // ...
-};
-```
-
-Commit and push the changes to `./cluster/platform/components.js`. You can now open the UI via configured ingress or with `wk ui` and connect clusters. See [How to connect a cluster](#how-to-connect-a-cluster) below.
-
-_Tip: You can verify that the address is externally accessible with the [`natscli`](https://github.com/nats-io/natscli):_
+Using a PostgreSQL database does not require any additional setup on the cluster side. The following details are however needed in order to connect:
+  <ul>
+    <li>Database server hostname</li>
+    <li>Database name</li>
+    <li>Database user - The database user requires admin privileges on the database server as it will automatically create the necessary schema.</li>
+    <li>Database password</li>
+  </ul>
+The database credentials (user and password) need to be provided separately, before installing the chart, as a secret. Run the following command to create a secret:
 
 ```bash
-# Wrong host/port will give a connection error
-$ nats sub test --server wkp-host:1234
-nats: error: nats: no servers available for connection, try --help
-
-# Correct host/port will give an auth error!
-# (This is fine we are not providing credentials here just testing the connection)
-$ nats sub test --server wkp-host:32545
-nats: error: nats: Authorization Violation, try --help
+$ kubectl create secret generic mccp-db-credentials \
+    --namespace mccp \
+    --from-literal=username=<database-user> \
+    --from-literal=password=<database-password>
 ```
 
-### Adding an ingress exception for `/agent.yaml`
+  </TabItem>
+</Tabs>
 
-If you have configured ingress with authentication (see [Securing the UI](../cluster-operations/auth) you may need to add an additional ingress rule for `/gitops/api/agent.yaml` to ensure that this path is publicly accessible. The manifest below shows how to add this rule.
+### 3. Creating a secret for docker repository
 
-```yaml
----
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress
-metadata:
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-  name: wkp-ui-agent-no-auth
-  namespace: wkp-ui
-spec:
-  rules:
-    - host: <hostname-to-use> # e.g. app.wkp.weave.works
-      http:
-        paths:
-          - path: /gitops/api/agent.yaml
-            backend:
-              serviceName: wkp-ui-nginx-ingress-controller
-              servicePort: 80
-  tls:
-    - hosts:
-        - <hostname-to-use> # e.g. app.wkp.weave.works
-      secretName: wkp-tls
+Create a secret that contains your docker repository credentials. This secret will be used by Kubernetes during deployment in order to pull down the MCCP images. You can find instructions on how to generate this secret [here](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/).
+
+Add this secret to the target namespace. This needs to be the same namespace that the Helm chart will be installed.
+
+```bash
+$ kubectl create secret docker-registry \
+  --namespace mccp docker-io-pull-secret \
+  --docker-username=<your-docker-username> \
+  --docker-password=<your-docker-password>
 ```
+
+If you use a secrets management solution such as Sealed Secrets follow their instructions on how to create a new secret.
+
+Take note of the secret name as you will need to supply it later when installing the chart.
+
+### 4. Determining the public IP address of the worker nodes
+
+You need to determine the public IP address of the worker nodes of your cluster. This IP address is necessary in order to establish connectivity between agents and your MCCP instance. The way to determine this depends on your cluster type and provisioning method. Take note of that IP address as you will need to supply it later when installing the chart.
+
+:::info
+_You may also use a domain name instead of an IP address._
+:::
+
+### 5. Installing the Helm chart
+
+Before installing the chart, you need to add the Helm chart repository and then update its local cache. Run the following commands:
+
+```bash
+$ helm repo add wkpv3 https://s3.us-east-1.amazonaws.com/weaveworks-wkp/charts-v3
+  "wkpv3" has been added to your repositories
+$ helm repo update
+  Hang tight while we grab the latest from your chart repositories...
+  ...Successfully got an update from the "wkpv3" chart repository
+  Update Complete. ⎈Happy Helming!⎈
+```
+
+Finally install the Helm chart to the target namespace by executing the following command using the Helm CLI (>= `v3.5.4`).
+  
+<Tabs
+  groupId="database-systems"
+  defaultValue="sqlite-host-path-volume"
+  values={[
+    {label: 'SQLite on a host path volume', value: 'sqlite-host-path-volume'},
+    {label: 'SQLite on a persistent volume', value: 'sqlite-persistent-volume'},
+    {label: 'PostgreSQL', value: 'postgres'},
+  ]}>
+  <TabItem value="sqlite-host-path-volume">
+
+```bash
+$ helm install mccp wkpv3/mccp \
+    --version <chart-version> \
+    --namespace mccp \
+    --set "imagePullSecrets[0].name=<secret-containing-docker-config>" \
+    --set "agentTemplate.natsURL=<nats-address>:<exposed-port-for-nats>" \
+    --set "nats.client.service.nodePort=<exposed-port-for-nats>" \
+    --set "wkp-ui.image.pullSecrets[0]=<secret-containing-docker-config>"
+```
+  
+  </TabItem>
+  <TabItem value="sqlite-persistent-volume">
+
+```bash
+$ helm install mccp wkpv3/mccp \
+    --version <chart-version> \
+    --namespace mccp \
+    --set "imagePullSecrets[0].name=<secret-containing-docker-config>" \
+    --set "dbConfig.databaseType=sqlite" \
+    --set "sqliteConfig.persistentVolumeClaim=true" \
+    --set "agentTemplate.natsURL=<nats-address>:<exposed-port-for-nats>" \
+    --set "nats.client.service.nodePort=<exposed-port-for-nats>" \
+    --set "wkp-ui.image.pullSecrets[0]=<secret-containing-docker-config>"
+```
+
+  </TabItem>
+  <TabItem value="postgres">
+
+```bash
+$ helm install mccp wkpv3/mccp \
+    --version <chart-version> \
+    --namespace mccp \
+    --set "imagePullSecrets[0].name=<secret-containing-docker-config>" \
+    --set "dbConfig.databaseType=postgres" \
+    --set "dbConfig.databaseURI=<database-server-hostname>" \
+    --set "postgresConfig.databaseName=<database-name>" \
+    --set "agentTemplate.natsURL=<nats-address>:<exposed-port-for-nats>" \
+    --set "nats.client.service.nodePort=<exposed-port-for-nats>" \
+    --set "wkp-ui.image.pullSecrets[0]=<secret-containing-docker-config>"
+```
+
+By default, connections to PostgreSQL will use port 5432.
+
+  </TabItem>
+</Tabs>
+
+
+### 6. Checking that MCCP is installed (optional)
+
+You should now be able to load the MCCP UI by running the following command:
+
+```bash
+$ kubectl port-forward --namespace mccp deployments.apps/mccp-nginx-ingress-controller 8000:80
+```
+The MCCP UI should now be accessible at `http://localhost:8000`.
 
 ## How to: Connect a cluster {#how-to-connect-a-cluster}
 
