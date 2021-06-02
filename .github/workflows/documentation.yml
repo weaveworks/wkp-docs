@@ -1,0 +1,53 @@
+name: main
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  checks:
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@50fbc622fc4ef5163becd7fab6573eac35f8462e
+      - uses: actions/setup-node@56899e050abffc08c2b3b61f3ec6a79a9dc3223d
+        with:
+          node-version: '12.x'
+      - name: Test Build
+        run: |
+          if [ -e yarn.lock ]; then
+          yarn install --frozen-lockfile
+          elif [ -e package-lock.json ]; then
+          npm ci
+          else
+          npm i
+          fi
+          npm run build
+  gh-release:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@50fbc622fc4ef5163becd7fab6573eac35f8462e
+      - uses: actions/setup-node@56899e050abffc08c2b3b61f3ec6a79a9dc3223d
+        with:
+          node-version: '12.x'
+      - uses: weaveworks/webfactory-ssh-agent@6b2f2c5354ff41f1edbbf7a17ea9b6178c89be9f
+        with:
+          ssh-private-key: ${{ secrets.WKP_DOCS_WEAVEWORKS_DOCS_BOT_DEPLOY_KEY }}
+      - name: Release to GitHub Pages
+        env:
+          USE_SSH: true
+          GIT_USER: git
+        run: |
+          git config --global user.email "corporate-it+weaveworks-docs-bot@weave.works"
+          git config --global user.name "weaveworks-docs-bot"
+          if [ -e yarn.lock ]; then
+          yarn install --frozen-lockfile
+          elif [ -e package-lock.json ]; then
+          npm ci
+          else
+          npm i
+          fi
+          npm run deploy
