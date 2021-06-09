@@ -28,6 +28,7 @@ module.exports = {
       items: [
         'mccp/intro',
         'mccp/usage-guide',
+        'mccp/cluster-api-providers',
       ],
     },
     {
