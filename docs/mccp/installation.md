@@ -122,6 +122,13 @@ Take note of the secret name as you will need to supply it later when installing
 
 ### 4. Create a secret for creating pull requests on your git provider
 
+A Personal Access Token is required for the MCCP to create pull requests for new clusters. These tokens need certain permissions (scopes) set. For
+
+- GitHub: `repo`
+- GitLab: `api`
+
+Save the token in secret called `git-provider-credentials` in the mccp's deployment namespace:
+
 ```bash
 kubectl create secret generic git-provider-credentials \
   --namespace=<mccp-namespace>
