@@ -24,15 +24,6 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Multi-cluster Control Plane',
-      items: [
-        'mccp/intro',
-        'mccp/usage-guide',
-        'mccp/cluster-api-providers',
-      ],
-    },
-    {
-      type: 'category',
       label: 'Team Workspaces',
       items: [
         'team-workspaces/usage-guide',
@@ -89,25 +80,30 @@ module.exports = {
     {
       type: 'category',
       label: 'FAQ',
-      items: [
-        'FAQ/faq',
-      ],
+      items: ['FAQ/faq'],
     },
     {
       type: 'category',
       label: 'Reference',
-      items: [
-        'reference/reference',
-        'reference/cluster',
-        'reference/machines',
-      ],
+      items: ['reference/reference', 'reference/cluster', 'reference/machines'],
     },
     {
       type: 'category',
       label: 'Thirdparty Dependencies',
+      items: ['deps/dependencies'],
+    },
+  ],
+  mccp: [
+    'mccp/intro',
+    'mccp/installation',
+    {
+      type: 'category',
+      label: 'Usage Guide',
+      collapsed: false,
       items: [
-        'deps/dependencies',
-        
+        'mccp/existing-clusters',
+        'mccp/cluster-api-providers',
+        'mccp/templates',
       ],
     },
   ],

@@ -1,6 +1,4 @@
-
 const versions = require('./versions.json');
-
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: 'WKP Technical Documentation',
@@ -23,25 +21,13 @@ module.exports = {
         {
           type: 'doc',
           docId: 'getting-started/introduction',
-          label: 'Getting Started',
+          label: 'WKP',
           position: 'left',
         },
         {
           type: 'doc',
-          docId: 'deploying-wkp/hosts',
-          label: 'Install',
-          position: 'left',
-        },
-        {
-          type: 'doc',
-          docId: 'tasks/using-the-eks-d-distribution',
-          label: 'Tasks',
-          position: 'left',
-        },
-        {
-          type: 'doc',
-          docId: 'cluster-operations/user-workloads',
-          label: 'Cluster Operations',
+          docId: 'mccp/intro',
+          label: 'Multi-Cluster Control Plane',
           position: 'left',
         },
         // right
@@ -58,10 +44,10 @@ module.exports = {
           label: 'Release Notes',
         },
         {
-         type: 'docsVersionDropdown',
-         position: 'right',
-         dropdownActiveClassDisabled: true,
-       },
+          type: 'docsVersionDropdown',
+          position: 'right',
+          dropdownActiveClassDisabled: true,
+        },
         {
           href: 'https://github.com/weaveworks/wkp-docs/tree/main',
           label: 'GitHub',
@@ -69,10 +55,9 @@ module.exports = {
         },
       ],
     },
-   footer: {
+    footer: {
       style: 'dark',
       links: [
-
         {
           title: 'Support',
           items: [
@@ -81,7 +66,7 @@ module.exports = {
               href: 'mailto:support@weave.works',
             },
           ],
-         },
+        },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} Weaveworks`,
     },
@@ -93,14 +78,13 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl:
-            'https://github.com/weaveworks/wkp-docs/tree/main',
+          editUrl: 'https://github.com/weaveworks/wkp-docs/tree/main',
           lastVersion: versions[0],
           versions: {
             current: {
               label: 'main',
             },
-          }
+          },
         },
         blog: {
           showReadingTime: true,
@@ -113,5 +97,5 @@ module.exports = {
         },
       },
     ],
-  ]
+  ],
 };
