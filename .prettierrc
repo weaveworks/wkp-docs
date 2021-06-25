@@ -1,10 +1,10 @@
 {
+  "singleQuote": true,
   "overrides": [
     {
       "files": "*.md",
       "options": {
-        "parser": "mdx",
-        "singleQuote": true
+        "parser": "mdx"
       }
     }
   ]
