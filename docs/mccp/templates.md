@@ -26,7 +26,7 @@ spec:
 
 ### Resource templates - `spec.resourcetemplates`
 
-Add the list of objects to be rendered out to the `spec.resourcetemplates` section. This will
+Add the list of objects to be rendered out to the `spec.resourcetemplates` section.
 
 ### Parameter metadata - `spec.params`
 
