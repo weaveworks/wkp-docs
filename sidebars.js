@@ -106,5 +106,15 @@ module.exports = {
         'mccp/templates',
       ],
     },
+    {
+      type: 'category',
+      label: 'MCCP CLI Reference',
+      collapsed: false,
+      items: [
+
+            'mccp/cli-templates',
+            'mccp/cli-clusters',
+      ],
+    },
   ],
 };
