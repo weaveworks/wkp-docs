@@ -104,6 +104,7 @@ module.exports = {
         'mccp/existing-clusters',
         'mccp/cluster-api-providers',
         'mccp/templates',
+        'mccp/provider-identities',
       ],
     },
     {
