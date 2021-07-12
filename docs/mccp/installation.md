@@ -229,3 +229,9 @@ $ kubectl port-forward --namespace mccp deployments.apps/mccp-nginx-ingress-cont
 ```
 
 The MCCP UI should now be accessible at `http://localhost:8000`.
+
+## How to: Install the MCCP CLI
+
+The MCCP CLI allows you to interact with MCCP clusters. You can use `mccp` to manage the lifecycle of your infrastructure declaratively using GitOps. The latest version of the MCCP CLI is available in the following links:
+ - [Linux](https://weaveworks-wkp.s3.amazonaws.com/mccp-master-linux-amd64)
+ - [macOS](https://weaveworks-wkp.s3.amazonaws.com/mccp-master-darwin-amd64)
