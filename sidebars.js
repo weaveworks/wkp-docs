@@ -105,6 +105,7 @@ module.exports = {
         'mccp/cluster-api-providers',
         'mccp/templates',
         'mccp/provider-identities',
+        'mccp/deleting-a-cluster',
       ],
     },
     {
