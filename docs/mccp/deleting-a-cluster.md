@@ -22,6 +22,5 @@ mccp clusters delete <cluster-name>
 Merge the PR to delete the clusters.
 
 ### Notes
-A current limitation is the inability to apply an _empty_ repository to a cluster. If you have deployments and other manifests commited to this repository, and then _delete all of them_ so there are 0 manifests left, then the apply will fail and the resources will not be removed from the cluster. You can either:
-1. Ask your admin to delete the cluster if you are done with it.
-2. Add a dummy *ConfigMap* after deleting everything else so that you have at least 1 manifest to apply.
+A current limitation is the inability to apply an _empty_ repository to a cluster. If you have capi clusters and other manifests commited to this repository, and then _delete all of them_ so there are 0 manifests left, then the apply will fail and the resources will not be removed from the cluster.
+A workaround is to add a dummy *ConfigMap* back to the git repository after deleting everything else so that there is at least 1 manifest to apply.
