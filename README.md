@@ -1,4 +1,8 @@
-# Website
+# DEPRECATED: Website for docs.wkp.weave.works
+
+See https://github.com/weaveworks/corp/issues/3091
+
+---
 
 This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern static website generator.
 
